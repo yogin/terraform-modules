@@ -65,3 +65,18 @@ variable "whitelist" {
   ]
 }
 
+variable "min_instances" {
+  description = "Minimum number of instances"
+  default = 1
+}
+
+variable "max_instances" {
+  description = "Maximum number of instances"
+  default = 1
+}
+
+variable "desired_instances" {
+  description = "Desired number of instances"
+  default = 1
+}
+
