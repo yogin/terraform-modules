@@ -1,7 +1,7 @@
 
 resource "aws_instance" "bastion" {
   count = "${length(var.availability_zones)}"
-  ami = "${coalesce(var.ami, data.aws_ami.ubuntu.id)}"
+  ami = "${var.ami}"
   instance_type = "${var.type}"
 
   key_name = "${var.key_name}"

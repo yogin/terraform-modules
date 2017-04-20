@@ -1,4 +1,12 @@
 
+module "amis" {
+  source = "../../amis"
+
+  access_key                  = "${var.access_key}"
+  secret_key                  = "${var.secret_key}"
+  region                      = "${var.region}"
+}
+
 module "bastion" {
   source = "../../bastion"
 
@@ -13,5 +21,6 @@ module "bastion" {
   public_subnet_ids           = "${module.vpc.public_subnet_ids}"
   internal_security_group_id  = "${module.vpc.internal_security_group_id}"
   key_name                    = "${var.ssh_key_name}"
+  ami                         = "${module.amis.ubuntu_xenial_hvm}"
 }
 
