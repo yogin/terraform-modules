@@ -11,6 +11,7 @@ module "bastion" {
   vpc_id                      = "${module.vpc.vpc_id}"
   availability_zones          = "${module.vpc.availability_zones}"
   public_subnet_ids           = "${module.vpc.public_subnet_ids}"
+  private_subnet_ids          = "${module.vpc.private_subnet_ids}"
   internal_security_group_id  = "${module.vpc.internal_security_group_id}"
   key_name                    = "${var.ssh_key_name}"
   ami                         = "${module.amis.ubuntu_xenial_hvm}"

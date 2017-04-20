@@ -32,6 +32,11 @@ variable "public_subnet_ids" {
   type = "list"
 }
 
+variable "private_subnet_ids" {
+  description = "List of private subnets"
+  type = "list"
+}
+
 variable "availability_zones" {
   description = "List of availability zones"
   type = "list"
@@ -72,7 +77,7 @@ variable "min_instances" {
 
 variable "max_instances" {
   description = "Maximum number of instances"
-  default = 1
+  default = 2
 }
 
 variable "desired_instances" {

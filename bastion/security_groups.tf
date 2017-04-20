@@ -11,13 +11,13 @@ resource "aws_security_group" "bastion" {
   }
 }
 
-resource "aws_security_group_rule" "allow_ssh" {
+resource "aws_security_group_rule" "allow_bastion_elb" {
   security_group_id = "${aws_security_group.bastion.id}"
   type = "ingress"
-  from_port = "22"
+  from_port = "0"
   to_port = "22"
   protocol = "tcp"
-  cidr_blocks = "${var.whitelist}"
+  source_security_group_id = "${aws_security_group.bastion_elb.id}"
 }
 
 resource "aws_security_group_rule" "allow_internal" {
@@ -27,15 +27,6 @@ resource "aws_security_group_rule" "allow_internal" {
   to_port = "0"
   protocol = "-1"
   source_security_group_id = "${var.internal_security_group_id}"
-}
-
-resource "aws_security_group_rule" "allow_bastion_elb" {
-  security_group_id = "${aws_security_group.bastion.id}"
-  type = "egress"
-  from_port = "0"
-  to_port = "22"
-  protocol = "tcp"
-  source_security_group_id = "${aws_security_group.bastion_elb.id}"
 }
 
 resource "aws_security_group_rule" "allow_bastion" {
